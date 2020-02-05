@@ -1,0 +1,7 @@
+{
+  "name": "Android Vector Drawable",
+  "id": "752374946811055489",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
+}

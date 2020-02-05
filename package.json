@@ -1,0 +1,29 @@
+{
+  "name": "android-vector-drawable-figma",
+  "version": "1.0.0",
+  "description": "Figma plugin for export Android vector drawable.",
+  "main": "code.js",
+  "scripts": {
+    "watch": "npx webpack --mode=development --watch",
+    "publish": "npx webpack --mode=production"
+  },
+  "author": "Ashung.hung@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^3.4.1",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.1.2",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.4",
+    "highlight.js": "^9.18.1",
+    "svg-path-bounds": "^1.0.1",
+    "svgo": "file:node_modules_changed/svgo",
+    "svgpath": "^2.2.3"
+  }
+}

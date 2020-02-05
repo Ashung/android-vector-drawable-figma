@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 16px 16px 24px;
+    font: 12px "Inter", sans-serif;
+}
+pre {
+    cursor: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    font: normal 400 11px/16px "Roboto Mono",monospace;
+    line-height: 18px;
+    color: #444;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+code {
+    font: inherit;
+}
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    position: fixed;
+    bottom: 16px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    background-color: #fff;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+button:disabled svg path {
+    fill-opacity: 0.3;
+}
+button:not([disabled]):hover {
+    background-color: #eee;
+}
+button:not([disabled]):active {
+    background-color: #ccc;
+}
+#export {
+    right: 16px;
+}
+#copy {
+    right: 48px;
+}
+.hljs-comment,.hljs-quote{color:#aaa}
+.hljs-built_in,.hljs-builtin-name,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#f16b16}
+.hljs-string,.hljs-symbol{color:#20a471}
+.hljs-keyword{color:#725ee1}
+.hljs{display:block;overflow-x:auto;background:#fff;color:#2c2c2c}
