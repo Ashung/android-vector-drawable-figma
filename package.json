@@ -7,6 +7,10 @@
     "watch": "npx webpack --mode=development --watch",
     "publish": "npx webpack --mode=production"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashung/android-vector-drawable-figma.git"
+  },
   "author": "Ashung.hung@gmail.com",
   "license": "MIT",
   "devDependencies": {

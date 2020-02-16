@@ -1,9 +1,15 @@
-
-main(true);
-
-figma.on('selectionchange', () => {
-    main(false);
+figma.showUI(__html__, {
+    width: 240,
+    height: 320
 });
+
+let updateTimeout = 0;
+let updateCounter = 0;
+let prevMsg = '';
+
+figma.on('selectionchange', update);
+
+update();
 
 figma.ui.onmessage = message => {
     if (message.type === 'notify') {
@@ -11,16 +17,10 @@ figma.ui.onmessage = message => {
     }
 };
 
-function main(showUI: Boolean): void {
+function update(): void {
+    clearTimeout(updateTimeout);
 
     const selectedLayers: readonly SceneNode[] = figma.currentPage.selection;
-    
-    if (showUI) {
-        figma.showUI(__html__, {
-            width: 240,
-            height: 320
-        });
-    }
 
     if (selectedLayers.length !== 1) {
         figma.ui.postMessage({
@@ -54,10 +54,13 @@ function main(showUI: Boolean): void {
                     format: 'SVG'
                 }; 
                 layer.exportAsync(exportSettings).then((data: Uint8Array) => {
-                    figma.ui.postMessage({
-                        name,
-                        data
-                    });
+                    const msg = {name, data};
+                    const msgStr = JSON.stringify(msg);
+                    if (msgStr !== prevMsg) {
+                        prevMsg = msgStr;
+                        figma.ui.postMessage(msg);
+                        updateCounter = 0;
+                    }
                 }).catch((reason: any) => {
                     console.log(reason);
                 });
@@ -68,6 +71,8 @@ function main(showUI: Boolean): void {
                 });
             };
         }
-
     }
+
+    const timeout = updateCounter++ < 20 ? 16 : 250;
+    updateTimeout = setTimeout(update, timeout);
 }
