@@ -1,13 +1,17 @@
 import './ui.css';
 
-import svg2vectordrawable from './svg-to-vectordrawable';
+import svg2vectordrawable from 'svg2vectordrawable';
 
 // https://clipboardjs.com/
 import Clipboard from 'clipboard';
 
-import hljs from 'highlight.js/lib/highlight';
+import hljs from 'highlight.js/lib/core';
 import xml from 'highlight.js/lib/languages/xml';
 hljs.registerLanguage('xml', xml);
+hljs.configure({
+    ignoreUnescapedHTML: true,
+    throwUnescapedHTML: false,
+});
 
 const codeBlock = document.getElementById('codeBlock');
 const copyButton = document.getElementById('copy');
@@ -52,7 +56,7 @@ window.onmessage = async (event) => {
     const data = pluginMessage.data;
     if (data) {
         if (pluginMessage.error) {
-            codeBlock.innerText = pluginMessage.data;
+            codeBlock.textContent = pluginMessage.data;
             codeBlock.setAttribute('data-file-name', '');
             copyButton.setAttribute('disabled', 'disabled');
             exportButton.setAttribute('disabled', 'disabled');
@@ -60,11 +64,11 @@ window.onmessage = async (event) => {
             const textDecoder = new TextDecoder();
             const svgCode = textDecoder.decode(pluginMessage.data);
             const xmlCode = await svg2vectordrawable(svgCode);
-            codeBlock.innerText = xmlCode;
+            codeBlock.textContent = xmlCode;
             codeBlock.setAttribute('data-file-name', pluginMessage.name);
             copyButton.removeAttribute('disabled');
             exportButton.removeAttribute('disabled');
         }
-        hljs.highlightBlock(codeBlock);
+        hljs.highlightElement(codeBlock);
     }
 };

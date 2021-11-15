@@ -15,10 +15,11 @@ pre {
     font: normal 400 11px/16px "Roboto Mono",monospace;
     line-height: 18px;
     color: #444;
-    white-space: pre-wrap;
-    word-break: break-all;
+    height: 100%;
 }
 code {
+    height: 100%;
+    white-space: pre;
     font: inherit;
 }
 button {
